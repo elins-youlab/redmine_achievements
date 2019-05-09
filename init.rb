@@ -1,5 +1,5 @@
 Redmine::Plugin.register :achievements do
-  name 'Achivments plugin'
+  name 'achievements'
   author 'leo'
   description 'This is a plugin for Redmine'
   version '0.0.1'

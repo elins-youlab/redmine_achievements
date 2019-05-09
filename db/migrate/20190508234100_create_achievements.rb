@@ -1,6 +1,6 @@
 class CreateAchievements < ActiveRecord::Migration[5.2]
   def change
-    create_table :counters do |table|
+    create_table :achievements do |table|
       table.string :name, null: false
       table.string :description
       table.integer :prize, null: false
