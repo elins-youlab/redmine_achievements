@@ -1,0 +1,40 @@
+h1
+  |Редактировать
+= form_with(model: achievement, local: true) do |form|
+
+  -if achievement.errors.any?
+    div
+      -id="error_explanation"
+    h2
+      =pluralize(achievement.errors.count, "error")
+    ul
+      -achievement.errors.full_messages.each do |msg|
+        li = msg
+        end
+
+  end
+
+  table
+    tr
+      td  = form.label :name
+      td  = form.text_field :name
+    tr
+      td  = form.label :description
+      td  = form.text_field :description
+    tr
+      td  = form.label :prize
+      td  = form.text_field :prize
+    tr
+      td  = form.label :action
+      td  = form.text_field :action
+    tr
+      td  = form.label :rank
+      td  = form.text_field :rank
+    tr
+      td  = form.label :status
+      td автоматическое присваивание
+      td  = form.check_box:action
+
+  br
+  = form.submit
+=link_to 'назад', achievements_path

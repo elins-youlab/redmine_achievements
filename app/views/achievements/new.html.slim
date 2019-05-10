@@ -1,0 +1,33 @@
+h1
+  |новое достижение
+= error_messages_for achievement
+
+= form_with model: achievement do |form|
+  table
+    tr
+      td  = form.label :name
+      td  = form.text_field :name
+    tr
+      td  = form.label :description
+      td  = form.text_field :description
+    tr
+      td  = form.label :prize
+      td  = form.text_field :prize
+    tr
+      td  = form.label :action
+      td  = form.text_field :action
+    tr
+      td  = form.label :rank
+      td  = form.text_field :rank
+    tr
+      td  = form.label :status
+      td автоматическое присваивание
+      td  = form.check_box:action
+
+
+  br
+  = form.submit 'Создать новое достижение'
+  end
+br
+
+=link_to '    назад', achievements_path

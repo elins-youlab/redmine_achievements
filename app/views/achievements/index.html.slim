@@ -1,0 +1,30 @@
+h1
+  |Достижения
+
+table
+  tr
+    td name
+    td description
+    td prize
+    td action
+    td from
+    td counter
+    td range
+    td status
+    td show
+    td edit
+  -achievements.each do |achievement|
+    tr
+      td =achievement.name
+      td =achievement.description
+      td = achievement.prize
+      td = achievement.action
+      td = achievement.from
+      td = achievement.counter
+      td = achievement.range
+      td = achievement.status
+      td =link_to 'открыть', achievement_path(achievement)
+      td =link_to 'редактировать', edit_achievement_path(achievement)
+br
+
+=link_to 'Создать новое достижение', new_achievement_path
