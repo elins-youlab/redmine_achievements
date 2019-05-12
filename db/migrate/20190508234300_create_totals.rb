@@ -1,6 +1,6 @@
-class CreateResults < ActiveRecord::Migration[5.2]
+class CreateTotals < ActiveRecord::Migration[5.2]
   def change
-    create_table :results do |table|
+    create_table :totals do |table|
       table.integer :likes, :default => 0
       table.integer :comments, :default => 0
       table.integer :rediscoveredTaskCount, :default => 0

@@ -9,10 +9,11 @@ table
     td action
     td from
     td counter
-    td range
+    td rank
     td status
     td show
-    td edit
+    - if(user.admin)
+      td edit
   -achievements.each do |achievement|
     tr
       td =achievement.name
@@ -21,10 +22,11 @@ table
       td = achievement.action
       td = achievement.from
       td = achievement.counter
-      td = achievement.range
+      td = achievement.rank
       td = achievement.status
       td =link_to 'открыть', achievement_path(achievement)
-      td =link_to 'редактировать', edit_achievement_path(achievement)
+      - if(user.admin)
+        td =link_to 'редактировать', edit_achievement_path(achievement)
 br
-
-=link_to 'Создать новое достижение', new_achievement_path
+- if(user.admin)
+  =link_to 'Создать новое достижение', new_achievement_path

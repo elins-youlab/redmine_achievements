@@ -13,9 +13,9 @@ Redmine::Plugin.register :achievements do
        caption: 'Достижения'
 
   menu :application_menu,
-       :results,
+       :totals,
        {
-           controller: :results,
+           controller: :totals,
            action: :index
        },
        caption: 'Результаты'

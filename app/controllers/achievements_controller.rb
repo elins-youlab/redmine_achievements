@@ -3,7 +3,8 @@ class AchievementsController < ApplicationController
 
   def index
     achievements = Achievement.all
-    render locals:{achievements: achievements}
+    user = User.current
+    render locals:{achievements: achievements, user:user}
   end
 
   def new
@@ -12,25 +13,19 @@ class AchievementsController < ApplicationController
   end
 
   def create
-    achievement = Achievement.new
+    achievement = Achievement.new(params_counter)
 
-    achievement.update(name:params.require(:achievement).permit(:name))
-    achievement.update(description:params.require(:achievement).permit(:description))
-    achievement.update(prize:params.require(:achievement).permit(:prize))
-    achievement.update(action:params.require(:achievement).permit(:action))
-    achievement.update(from:Date.today)
-    achievement.update(counter:12.0)
-    achievement.update(rank:params.require(:achievement).permit(:rank))
-    achievement.update(status:params.require(:achievement).permit(:status))
+    achievement.from = Date.today
+    achievement.counter = 12.0
 
+    if Achievement.find_by(name: achievement.name)
+      achievement.rank = Achievement.find_by(name: achievement.name).rank.to_i + 1
+    else
+      achievement.rank = 1;
+    end
 
-    # if !achievement.update(params_counter)
-    #   render :new,
-    #          locals: {achievement: achievement}
-    # else
-    #   redirect_to achievement_path(achievement)
-    # end
-    redirect_to achievements_path(achievement)
+    achievement.save
+    redirect_to achievements_path
 
   end
 
@@ -45,13 +40,14 @@ class AchievementsController < ApplicationController
   end
 
   def update
-    # achievement= Achievement.find(params[:id])
-    #
-    # if achievement.update(params_counter)
-    #   redirect_to achievement
-    # else
-    #   render 'edit'
-    # end
+    achievement= Achievement.find(params[:id])
+
+    if achievement.update(params_counter)
+      redirect_to achievement
+    else
+      render 'edit'
+    end
+
   end
 
   def params_counter
