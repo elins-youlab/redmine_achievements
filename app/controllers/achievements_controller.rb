@@ -50,6 +50,16 @@ class AchievementsController < ApplicationController
 
   end
 
+  def destroy
+    achievement = Achievement.find(params[:id])
+
+    unless achievement.destroy
+      flash[:error] = 'ошибка удаления'
+    end
+
+    redirect_to achievements_path
+  end
+
   def params_counter
     params.
         require(:achievement).permit(:name, :description, :prize, :action, :rank, :status)

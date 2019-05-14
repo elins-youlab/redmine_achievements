@@ -14,6 +14,7 @@ table
     td show
     - if(user.admin)
       td edit
+      td delete
   -achievements.each do |achievement|
     tr
       td =achievement.name
@@ -27,6 +28,9 @@ table
       td =link_to 'открыть', achievement_path(achievement)
       - if(user.admin)
         td =link_to 'редактировать', edit_achievement_path(achievement)
+        td =link_to 'удалить', achievement_path(achievement), method: :delete
 br
 - if(user.admin)
   =link_to 'Создать новое достижение', new_achievement_path
+  br
+  =link_to 'Создать группу ачивок', add_group_achievements_path

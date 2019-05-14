@@ -20,3 +20,8 @@ Redmine::Plugin.register :achievements do
        },
        caption: 'Результаты'
 end
+
+Rails.application.config.to_prepare do
+  #JournalsHelper.include Achievements::Infectors::JournalsHelper
+  User.include Achievements::Infectors::User
+end

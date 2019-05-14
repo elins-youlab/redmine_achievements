@@ -1,9 +1,9 @@
-
 class TotalsController < ApplicationController
 
   def index
-    total = Total.new
-    render locals:{result: total}
+    user = User.find(param)
+    total = Total.find(user.id)
+    render locals: {total: total, user: user}
   end
 
 end
