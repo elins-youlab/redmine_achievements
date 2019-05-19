@@ -32,5 +32,26 @@ table
 br
 - if(user.admin)
   =link_to 'Создать новое достижение', new_achievement_path
-  br
-  =link_to 'Создать группу ачивок', add_group_achievements_path
+br
+br
+br
+h1
+  |Группы достижений
+
+table
+  tr
+    td name
+    td achievements
+    - if(user.admin)
+      td edit
+      td delete
+  -sections.each do |section|
+    tr
+      td =section.name
+      td =section.achievements_list
+      -if (user.admin)
+        td = link_to 'редактировать', edit_section_path(section)
+        td = link_to 'удалить', section_path(section), method: :delete
+br
+- if(user.admin)
+  =link_to 'Создать новую группу', new_section_path

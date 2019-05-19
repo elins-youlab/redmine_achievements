@@ -2,8 +2,7 @@ class CreateTotals < ActiveRecord::Migration[5.2]
   def change
     create_table :totals do |table|
 
-      table.belongs_to :user, class_name: "User",
-                       foreign_key: "id"
+      table.references :user
 
       table.integer :likes, :default => 0
       table.integer :comments, :default => 0

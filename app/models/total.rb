@@ -1,7 +1,7 @@
 class Total < ActiveRecord::Base
   belongs_to :user
 
-  after_create :create_admin
+  #after_create :create_admin
 
   def create_admin
     total = Total.new

@@ -1,0 +1,19 @@
+h1
+  |новая группа достижений
+= error_messages_for section
+
+= form_with model: section do |form|
+  table
+    tr
+      td  = form.label :name
+      td  = form.text_field :name
+    -achievements.each do |achievement|
+      tr
+        td  = achievement.name
+        td  = form.check_box :achievements_list
+    end
+br
+= form.submit 'Создать группу достижений'
+  end
+br
+=link_to '    назад', achievements_path

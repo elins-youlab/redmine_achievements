@@ -1,19 +1,38 @@
 h1
-  | Результаты пользователя:
+  -if(!user.admin)
+    | Результаты пользователя:
     =user.login
+  -else
+    | Результаты пользователей:
 
 table
   tr
+    -if(user.admin)
+      td user
+
     td likes count
     td comments count
     td rediscoveredTaskCount
     td created tasks
     td tasks execute time
     td pages edited of wiki
-  tr
-    td = total.likes
-    td = total.comments
-    td = total.rediscoveredTaskCount
-    td = total.createTaskCount
-    td = total.taskTimeCounter
-    td = total.wikiPagesEditCount
+
+  -if user.admin
+    -totals.each do |total|
+      tr
+        td = User.find_by(id: total.user_id).login
+        td = total.likes
+        td = total.comments
+        td = total.rediscoveredTaskCount
+        td = total.createTaskCount
+        td = total.taskTimeCounter
+        td = total.wikiPagesEditCount
+      end
+  -else
+    tr
+      td = total.likes
+      td = total.comments
+      td = total.rediscoveredTaskCount
+      td = total.createTaskCount
+      td = total.taskTimeCounter
+      td = total.wikiPagesEditCount

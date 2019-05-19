@@ -3,8 +3,9 @@ class AchievementsController < ApplicationController
 
   def index
     achievements = Achievement.all
+    sections = Section.all
     user = User.current
-    render locals:{achievements: achievements, user:user}
+    render locals:{achievements: achievements, user:user, sections: sections}
   end
 
   def new

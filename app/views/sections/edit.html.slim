@@ -1,0 +1,30 @@
+h1
+  |Редактировать
+= form_with(model: section, local: true) do |form|
+
+  -if section.errors.any?
+    div
+      -id="error_explanation"
+    h2
+      =pluralize(section.errors.count, "error")
+    ul
+      -section.errors.full_messages.each do |msg|
+        li = msg
+        end
+
+  end
+
+  table
+    tr
+      td  = form.label :name
+      td  = form.text_field :name
+    -achievements.each do |achievement|
+      tr
+        td  = achievement.name
+        td  = form.check_box :achievements_list
+      end
+    br
+  = form.submit 'edit'
+  end
+br
+=link_to 'назад', achievements_path
