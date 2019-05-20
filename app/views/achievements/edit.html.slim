@@ -33,8 +33,9 @@ h1
     tr
       td  = form.label :status
       td автоматическое присваивание
-      td  = form.check_box:action
+      td  = form.check_box :status
 
   br
   = form.submit
+br
 =link_to 'назад', achievements_path

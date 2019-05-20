@@ -8,7 +8,7 @@ class SectionsController < ApplicationController
 
   def create
     section = Section.new(params_counter)
-    section.save
+    section.save!
     redirect_to achievements_path
   end
 
@@ -42,7 +42,6 @@ class SectionsController < ApplicationController
   end
 
   def params_counter
-    params.
-        require(:section).permit(:name, :achievements_list)
+    params.require(:section).permit(:name, achievements: [])
   end
 end

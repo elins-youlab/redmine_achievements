@@ -43,8 +43,11 @@ class AchievementsController < ApplicationController
   def update
     achievement= Achievement.find(params[:id])
 
+    achievement.from = Date.today
+    achievement.counter = 12.0
+
     if achievement.update(params_counter)
-      redirect_to achievement
+      redirect_to achievements_path
     else
       render 'edit'
     end

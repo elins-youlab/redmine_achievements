@@ -8,7 +8,6 @@ table
     td prize
     td action
     td from
-    td counter
     td rank
     td status
     td show
@@ -22,7 +21,6 @@ table
       td = achievement.prize
       td = achievement.action
       td = achievement.from
-      td = achievement.counter
       td = achievement.rank
       td = achievement.status
       td =link_to 'открыть', achievement_path(achievement)
@@ -48,7 +46,7 @@ table
   -sections.each do |section|
     tr
       td =section.name
-      td =section.achievements_list
+      td =section.achievements
       -if (user.admin)
         td = link_to 'редактировать', edit_section_path(section)
         td = link_to 'удалить', section_path(section), method: :delete
