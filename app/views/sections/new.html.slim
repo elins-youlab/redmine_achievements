@@ -2,15 +2,13 @@ h1
   |новая группа достижений
 = error_messages_for section
 
-= form_with model: section do |form|
+= simple_form_for section do |form|
   table
     tr
-      td  = form.label :name
-      td  = form.text_field :name
+      td  = form.input :name
     tr
-      td = form.label :achievements
-      td = form.check_box :achievements, options_for_select(Achievement.all), multiple: true
+      td = form.input :achievements, as: :check_boxes, collection: Achievement.all, label_method: :name
     br
-  = form.submit 'Создать группу достижений'
+  = form.button :submit
 br
 =link_to '    назад', achievements_path
