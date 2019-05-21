@@ -1,0 +1,13 @@
+h1
+  |manual assign
+
+=simple_form_for achievement do |form|
+  table
+    tr
+      td  = form.input :name
+    tr
+      td = form.association :users, as: :check_boxes
+  =form.button :submit
+br
+
+=link_to '    назад', achievements_path

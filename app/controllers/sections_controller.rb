@@ -1,34 +1,25 @@
 class SectionsController < ApplicationController
-
   def new
     section = Section.new
-    achievements = Achievement.all;
+    achievements = Achievement.all
     render locals: {section: section, achievements: achievements}
   end
 
   def create
-    section = Section.new
-    section.name = params.require(:section).permit(:name)
-
-    params.require(:section).permit(achievements: []) do |a_id|
-      if Achievement.find(a_id)
-        section.achievements << Achievement.find(a_id)
-      end
+    unless Section.create(section_params)
+      flash[:error] = 'Не удалось сохранить группу'
     end
-
-    section.save!
     redirect_to achievements_path
   end
 
   def show
-    section = Section.find(params[:id])
-    render locals: {section: section}
+    render locals: {section: Section.find(params[:id])}
   end
 
   def update
     section = Section.find(params[:id])
 
-    if section.update(params_counter)
+    if section.update(section_params)
       redirect_to section
     else
       render 'edit'
@@ -37,7 +28,7 @@ class SectionsController < ApplicationController
 
   def edit
     section = Section.find(params[:id])
-    achievements = Achievement.all;
+    achievements = Achievement.all
     render locals: {section: section, achievements: achievements}
   end
 
@@ -49,7 +40,9 @@ class SectionsController < ApplicationController
     redirect_to achievements_path
   end
 
-  def params_counter
-    params.require(:section).permit(:name, achievements: [])
+  private
+
+  def section_params
+    params.require(:section).permit(:name, achievement_ids: [])
   end
 end

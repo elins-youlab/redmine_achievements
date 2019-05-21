@@ -16,15 +16,6 @@ class AchievementsController < ApplicationController
   def create
     achievement = Achievement.new(params_counter)
 
-    achievement.from = Date.today
-    achievement.counter = 12.0
-
-    if Achievement.find_by(name: achievement.name)
-      achievement.rank = Achievement.find_by(name: achievement.name).rank.to_i + 1
-    else
-      achievement.rank = 1;
-    end
-
     achievement.save
     redirect_to achievements_path
 
@@ -42,9 +33,6 @@ class AchievementsController < ApplicationController
 
   def update
     achievement= Achievement.find(params[:id])
-
-    achievement.from = Date.today
-    achievement.counter = 12.0
 
     if achievement.update(params_counter)
       redirect_to achievements_path
@@ -64,8 +52,12 @@ class AchievementsController < ApplicationController
     redirect_to achievements_path
   end
 
+  def assign
+
+  end
+
   def params_counter
     params.
-        require(:achievement).permit(:name, :description, :prize, :action, :rank, :status)
+        require(:achievement).permit(:name, :description, :prize, :action, :status)
   end
 end

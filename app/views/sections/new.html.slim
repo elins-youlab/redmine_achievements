@@ -2,13 +2,6 @@ h1
   |новая группа достижений
 = error_messages_for section
 
-= simple_form_for section do |form|
-  table
-    tr
-      td  = form.input :name
-    tr
-      td = form.input :achievements, as: :check_boxes, collection: Achievement.all, label_method: :name
-    br
-  = form.button :submit
+=render 'form' , section: section
 br
 =link_to '    назад', achievements_path

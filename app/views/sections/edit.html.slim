@@ -14,17 +14,8 @@ h1
 
   end
 
-  table
-    tr
-      td  = form.label :name
-      td  = form.text_field :name
-    -achievements.each do |achievement|
-      tr
-        td  = achievement.name
-        td  = form.check_box :achievements_list
-      end
-    br
-  = form.submit 'edit'
-  end
+
+=render 'form' , section: section
+
 br
 =link_to 'назад', achievements_path

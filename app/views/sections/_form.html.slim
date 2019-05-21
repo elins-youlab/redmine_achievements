@@ -1,0 +1,7 @@
+= simple_form_for section do |form|
+  table
+    tr
+      td  = form.input :name
+    tr
+      td = form.association :achievements, as: :check_boxes
+  = form.button :submit

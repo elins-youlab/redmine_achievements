@@ -6,6 +6,10 @@ class Achievement < ActiveRecord::Base
   has_many :sections,
            through: :achievement_relations
 
+  has_many :achievement_connections
+  has_many :users,
+           through: :achievement_connections
+
   def to_s
     name
   end
